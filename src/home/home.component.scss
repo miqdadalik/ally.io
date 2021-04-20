@@ -1,0 +1,38 @@
+.filter-form {
+    h4 {
+        margin-bottom: 5px;
+    }
+    .filter-checkbox {
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+}
+
+
+$border: solid 1px #CCC;
+
+ol{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+        border: $border;
+        border-bottom: none;
+        padding: 10px;
+        &:last-child {
+            border-bottom: $border;
+        }
+        a {
+            display: inline-block;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .sl-no {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        ul {
+            margin-top: 10px;
+        }
+    }
+}

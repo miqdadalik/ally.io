@@ -1,0 +1,33 @@
+<div class="page-wrapper" *ngIf="!initializing">
+    <div class="filter-form">
+        <form [formGroup]="form" class="form" (submit)="doFilter()">
+            <div>
+                <div class="filter-title">
+                    <h4>Filter</h4>
+                </div>
+                <div>
+                    <div *ngFor="let category of form.controls.categories.controls; let i=index;"
+                        class="filter-checkbox">
+                        <input type="checkbox" [formControl]="category">
+                        {{categoriesArray[i].name}}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <ol class="parent-items">
+        <li *ngFor="let parentItem of parentItems | dataFilter: form.value.categories : categoriesArray; let slNo = index">
+            <a class="parent-wrapper" (click)="toggleChild(parentItem.id)">
+                <i class="fa fa-caret-right" *ngIf="!isOpened[parentItem.id]"></i>
+                <i class="fa fa-caret-down" *ngIf="isOpened[parentItem.id]"></i>
+                <span class="sl-no">{{slNo+1}}</span>
+                <span class="title">{{parentItem.title}}</span>
+            </a>
+            <ul class="child-items" *ngIf="isOpened[parentItem.id]">
+            <li *ngFor="let childItem of groupedData[parentItem.id] | dataFilter: form.value.categories : categoriesArray;">
+                {{childItem.title}}
+            </li> 
+            </ul>
+        </li>
+    </ol>
+</div>
